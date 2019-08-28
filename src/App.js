@@ -20,7 +20,7 @@ const cities = [
 
 function App() {
 
-  const  [city, setCity] = useState("selecciona")
+  const  [city, setCity] = useState("selecciona una ciudad")
 
   const  handleSlection = city => {
     // console.log("grand parent handle", city)
@@ -33,7 +33,7 @@ function App() {
         <Row>
           <AppBar position="sticky">
             <Toolbar>
-              <Typography variant="title" color="inherit">
+              <Typography variant="subtitle1" color="inherit">
                 Weather App
               </Typography>
             </Toolbar>
@@ -47,9 +47,9 @@ function App() {
             />
           </Col>
           <Col xs={12} md={6}>
-           <Paper elevation="4">
+           <Paper elevation={4}>
             <div className="details">
-              <ForecastExtended city={city}/>
+              <ForecastExtended city={city} />
             </div>
            </Paper>
           </Col>

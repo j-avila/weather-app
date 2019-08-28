@@ -1,0 +1,10 @@
+.forecastExtended{
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.forecastExtended h1{
+  text-align: center;
+  color: darkslateblue;
+  padding: 1rem;
+}
