@@ -16,5 +16,9 @@ code {
 .details{
   width: 100%;
   height: 80vh;
-  background: rgb(233, 233, 233);
+  background: rgb(114, 119, 192);
+}
+
+.details h1{
+  color: white,
 }

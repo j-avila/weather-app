@@ -1,3 +1,9 @@
+.forecastExtended h5{
+  text-align: left;
+  margin: .5rem auto;
+  width: calc(100% - 35px);
+}
+
 .forecastExtended{
   max-height: 80vh;
   overflow-y: auto;
@@ -5,6 +11,6 @@
 
 .forecastExtended h1{
   text-align: center;
-  color: darkslateblue;
+  color: white;
   padding: 1rem;
 }

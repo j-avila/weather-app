@@ -4,38 +4,39 @@ import ForecastItem from './forecastItem'
 import {transformForecast} from './../services/transformForecast'
 import './styles.css'
 
-/* const fakedays = [
-  'lunes',
-  'martes',
-  'miercoles',
-  'jueves',
-  'viernes',
-  'sabado',
-  'domingo'
-]
+let ForecastItemsDays = props =>(
+  props.data.map((forecast, index) =>  (
+    <ForecastItem 
+      key={forecast.weekDay + index}
+      weekday={forecast.weekDay}
+      hour={forecast.hour}
+      data={forecast.data}
+    />
+  ))
+    
+)
 
-const fakedata = 
-  {
-    temperature: 20,
-    humidity: 10,
-    weatherState: "rain",
-    wind: 30
-} */
+const RenderProgress = () => {
+  return <h3>cargando...</h3>
+}
 
 const ForecastExtended = props =>{
-  const [days, setDays] = useState(null)
-  const [data, setData] = useState(null)
+  let [extData, setData] = useState(null)
   const {city} = props
 
+
   useEffect(() => {
+    let forecastData
     const url = `${apiForecastURL}?q=${city}&appid=${api_key}`
     fetch(url).then(
       data => (data.json())
       .then(
-        weater_data => {
-          let forecast = transformForecast(weater_data)
-          setData(forecast)
-          console.log(data)
+        weather_data => {
+          extData = ''
+          weather_data.cod === "404" ? console.log(weather_data) : 
+          forecastData = transformForecast(weather_data)
+          console.log(forecastData)
+          setData(forecastData) 
         }
       )
     )
@@ -43,14 +44,11 @@ const ForecastExtended = props =>{
 
   return(
     <div className="forecastExtended">
-      <h1>{city}</h1>
-      {data  ?
-          <h1>yaaay</h1>
-        /* days.map( day => 
-          <ForecastItem weekday={day} hour={'10:00pm'} data={data} />
-        )  */
-        : <h3>cargando...</h3>
-      } 
+      <h1>Pronostico extendido de {city}</h1>
+      {extData ? 
+        <ForecastItemsDays data={extData} />
+        : <RenderProgress />
+      }
     </div>
   )
 }
