@@ -32,7 +32,6 @@ const ForecastExtended = props =>{
       data => (data.json())
       .then(
         weather_data => {
-          extData = ''
           weather_data.cod === "404" ? console.log(weather_data) : 
           forecastData = transformForecast(weather_data)
           console.log(forecastData)
