@@ -3,7 +3,6 @@ import WeatherLocation from './weatherLocation'
 
 const LocationList = ({cities, onSelectedLocation}) => {
   const handleLocation = city =>{
-    console.log(city)
     onSelectedLocation(city)
   }
 

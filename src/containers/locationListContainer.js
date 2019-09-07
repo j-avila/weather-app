@@ -6,9 +6,6 @@ import { setCity } from '../actions/'
 export class LocationListContainer extends Component {
 
 handleSlection = city => {
-  console.log("grand parent handle", city)
-  // this.setState({city: city})
-  
   this.props.setCity(city)
 }
 render() {
