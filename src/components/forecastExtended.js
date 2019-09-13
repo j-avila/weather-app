@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {apiForecastURL, api_key} from './../constants/api_url'
 import ForecastItem from './forecastItem'
-import {transformForecast} from './../services/transformForecast'
 import './styles.css'
 
 let ForecastItemsDays = props =>(
@@ -23,23 +21,11 @@ const RenderProgress = () => {
 const ForecastExtended = props =>{
   let [extData, setData] = useState(null)
   const {city} = props
-
-
+  
   useEffect(() => {
-    let forecastData
-    const url = `${apiForecastURL}?q=${city}&appid=${api_key}`
-    fetch(url).then(
-      data => (data.json())
-      .then(
-        weather_data => {
-          weather_data.cod === "404" ? console.log(weather_data) : 
-          forecastData = transformForecast(weather_data)
-          setData(forecastData) 
-        }
-      )
-    )
-  },[city])
-
+    // let forecastData
+  },[city]) 
+  
   return(
     <div className="forecastExtended">
       <h1>Pronostico extendido de {city}</h1>
@@ -50,5 +36,5 @@ const ForecastExtended = props =>{
     </div>
   )
 }
-
+  
 export default ForecastExtended
