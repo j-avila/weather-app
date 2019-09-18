@@ -4,11 +4,10 @@ import { connect } from 'react-redux'
 import { setSelectedCity } from '../actions/'
 
 export class LocationListContainer extends Component {
-
-handleSlection = city => {
-  this.props.setCity(city)
-}
-render() {
+  handleSlection = city => {
+    this.props.setCity(city)
+  }
+  render() {
     const {cities} = this.props
     return (
       <LocationList

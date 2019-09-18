@@ -8,6 +8,7 @@
 
 @media (max-width: 64em){
   .location-list{
+    padding: .5rem 1rem;
     flex-direction: row !important;
     overflow: auto !important;
     max-height: 30vh !important;

@@ -4,12 +4,13 @@ import { connect } from 'react-redux'
 
 class ForecastExtendedContainer extends Component {
   render() {
+    const {city, forecastData} = this.props
     return (
-      <ForecastExtended city={this.props.city} />
+      <ForecastExtended city={city} forecastData={forecastData} />
     );
   }
 }
 
-const mapStateToprops = ({city}) => ({city})
+const mapStateToProps = ({city, forecastData}) => ({city, forecastData})
 
-export default connect(mapStateToprops, null)(ForecastExtendedContainer);
+export default connect(mapStateToProps, null)(ForecastExtendedContainer);

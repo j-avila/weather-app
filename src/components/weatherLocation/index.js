@@ -30,7 +30,7 @@ class WeatherLocation extends Component {
 
   componentDidMount() {
     this.handleUpdate()
-    // console.log("mount")
+    console.log("mount")
   }
   
   componentWillMount(nextProps, nextState) {

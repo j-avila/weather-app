@@ -9,9 +9,9 @@ import LocationListContainer from './containers/locationListContainer';
 import ForecastExtendedContainer from './containers/forecastExtendedContainer';
 
 const cities = [
+  "Santiago, cl",
   "Caracas, vzla",
   "Bolivar, vzla",
-  "Santiago, cl",
   "Amsterdam, nl",
   "California, us",
   "Maracaibo, vzla",

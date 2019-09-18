@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import ForecastItem from './forecastItem'
 import './styles.css'
 
@@ -18,19 +18,19 @@ const RenderProgress = () => {
   return <h3>cargando...</h3>
 }
 
+
 const ForecastExtended = props =>{
-  let [extData, setData] = useState(null)
-  const {city} = props
+  const {city, forecastData} = props
+  // const [extData, setData] = useState(null)
   
   useEffect(() => {
-    // let forecastData
   },[city]) 
   
   return(
     <div className="forecastExtended">
       <h1>Pronostico extendido de {city}</h1>
-      {extData ? 
-        <ForecastItemsDays data={extData} />
+      {forecastData ? 
+        <ForecastItemsDays data={forecastData} />
         : <RenderProgress />
       }
     </div>
@@ -38,3 +38,9 @@ const ForecastExtended = props =>{
 }
   
 export default ForecastExtended
+
+
+
+
+
+
