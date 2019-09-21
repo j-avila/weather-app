@@ -1,6 +1,7 @@
 .forecastExtended h5{
   text-align: left;
   margin: .5rem auto;
+  color: rgb(219, 219, 219);
   width: calc(100% - 35px);
 }
 

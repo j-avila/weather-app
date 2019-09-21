@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import reducers  from './../reducers'
 
 const initialState = {
-  city: "Caracas, ve",
+  city: "Caracas, vzla",
 } 
 
 const componseEnhancers = compose(

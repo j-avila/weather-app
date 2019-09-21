@@ -1,8 +1,12 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import ForecastItem from './forecastItem'
+import LinearProgress from '@material-ui/core/LinearProgress';
 import './styles.css'
 
+
+
 let ForecastItemsDays = props =>(
+
   props.data.map((forecast, index) =>  (
     <ForecastItem 
       key={forecast.weekDay + index}
@@ -15,16 +19,12 @@ let ForecastItemsDays = props =>(
 )
 
 const RenderProgress = () => {
-  return <h3>cargando...</h3>
+  return  <LinearProgress color="secondary" />
 }
 
 
 const ForecastExtended = props =>{
   const {city, forecastData} = props
-  // const [extData, setData] = useState(null)
-  
-  useEffect(() => {
-  },[city]) 
   
   return(
     <div className="forecastExtended">
