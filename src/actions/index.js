@@ -16,11 +16,19 @@ const getWeatherCity = payload => ({type: GET_WEATHER_CITY, payload})
 const setWeatherCity = payload => ({type: SET_WEATHER_CITY, payload})
 
 export const setSelectedCity = payload => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     const url = `${apiForecastURL}?q=${payload}&appid=${api_key}`
 
     // activar en el estado un indicador de busqueda de datos
     dispatch(setCity(payload))
+
+    const state = getState()
+    const date = state.cities && state.cities[payload].forecastDataDate
+    const now = new Date()
+
+    if(date && (now - date) < 1 * 60 * 1000) {
+      return
+    }
 
     return fetch(url).then(
       data => (data.json())
