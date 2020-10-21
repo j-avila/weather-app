@@ -1,5 +1,5 @@
 import React from 'react'
-import { findAllByText, render } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import Forecast from './Forecast'
 
@@ -7,37 +7,37 @@ const list = [
   {
     weekDay: 'lunes',
     temp: 10,
-    state: 'sunny',
+    state: 'clear',
     hour: '10:00 am',
   },
   {
     weekDay: 'martes',
     temp: 8,
-    state: 'cloud',
+    state: 'clouds',
     hour: '8:00 pm,',
   },
   {
     weekDay: 'miercoles',
     temp: 8,
-    state: 'sunny',
+    state: 'drizzle',
     hour: '8:00 pm,',
   },
   {
     weekDay: 'jueves',
     temp: 16,
-    state: 'fog',
+    state: 'snow',
     hour: '8:00 pm,',
   },
   {
     weekDay: 'viernes',
     temp: 16,
-    state: 'fog',
+    state: 'rain',
     hour: '8:00 pm,',
   },
   {
     weekDay: 'sabado',
     temp: 10,
-    state: 'rain',
+    state: 'clouds',
     hour: '8:00 pm,',
   },
   {

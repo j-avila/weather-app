@@ -3,12 +3,12 @@ import { render, screen } from '@testing-library/react'
 import Icons from './Icons'
 
 test('ForecastItem', async () => {
-	// arrange
-	render(<Icons weather='sunny' />)
+  // arrange
+  render(<Icons weather='clear' />)
 
-	// act
-	const element = screen.getByTestId('ico-sunny')
+  // act
+  const element = screen.getByTestId('ico-clear')
 
-	// assert
-	expect(element).toMatchSnapshot()
+  // assert
+  expect(element).toMatchSnapshot()
 })

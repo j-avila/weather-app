@@ -5,7 +5,14 @@ import Icons from '../Icons'
 
 const Weather = ({ temp, state }) => {
   return (
-    <Grid container item direction='row' justify='center' alignItems='center' spacing={1}>
+    <Grid
+      container
+      item
+      direction='row'
+      justify='space-around'
+      alignItems='center'
+      spacing={1}
+    >
       <Icons weather={state} />
       <Typography display='inline' variant='h2'>
         {temp}

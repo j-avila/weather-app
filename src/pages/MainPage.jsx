@@ -5,9 +5,15 @@ import AppFrame from './../components/AppFrame'
 import { Paper } from '@material-ui/core'
 
 const list = [
-  { city: 'Caracas', country: 'Venezuela', temp: 10, state: 'sunny' },
-  { city: 'Santiago', country: 'Chile', temp: 10, state: 'cloudy' },
-  { city: 'Amsterdam', country: 'Paises bajos', temp: 10, state: 'sunny' },
+  { city: 'Caracas', country: 'Venezuela', countryCode: 'VE', temp: 10, state: 'sunny' },
+  { city: 'Santiago', country: 'Chile', countryCode: 'CL', temp: 10, state: 'cloudy' },
+  {
+    city: 'Amsterdam',
+    country: 'Paises bajos',
+    countryCode: 'NL',
+    temp: 10,
+    state: 'sunny',
+  },
 ]
 
 export const MainPage = () => {

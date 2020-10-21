@@ -5,7 +5,7 @@ import { Grid } from '@material-ui/core'
 
 const CityInfo = ({ city, country }) => {
   return (
-    <Grid contianer>
+    <Grid container alignItems='flex-end'>
       <Typography display='inline' variant='h4'>
         {city}
       </Typography>

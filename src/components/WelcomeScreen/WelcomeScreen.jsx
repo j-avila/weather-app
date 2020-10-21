@@ -8,8 +8,6 @@ const WelcomeScreen = ({ children }) => {
 
   const [vanta, setVanta] = useState(0)
 
-  console.log('on rendering', refDiv.current)
-
   useEffect(() => {
     if (!vanta) {
       setVanta(
@@ -19,7 +17,7 @@ const WelcomeScreen = ({ children }) => {
         })
       )
     }
-    console.log('vanta hook')
+    // console.log('vanta hook')
 
     // sanitización
     return () => {

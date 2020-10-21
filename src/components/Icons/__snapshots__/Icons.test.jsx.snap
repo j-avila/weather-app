@@ -2,8 +2,8 @@
 
 exports[`ForecastItem 1`] = `
 <i
-  class="ico-sunny"
-  data-testid="ico-sunny"
+  class="ico-clear"
+  data-testid="ico-clear"
 >
   <svg
     fill="currentColor"

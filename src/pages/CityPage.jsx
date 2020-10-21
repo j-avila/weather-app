@@ -96,7 +96,7 @@ export const CityPage = () => {
 
   return (
     <AppFrame>
-      <Grid container direction='column' justify='center'>
+      <Grid container direction='column' justify='center' spacing={60}>
         <Grid container md={12} justify='center'>
           <CityInfo country={country} city={city} />
         </Grid>
