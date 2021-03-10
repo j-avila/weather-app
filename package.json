@@ -19,7 +19,7 @@
     "react-scripts": "3.4.3",
     "recharts": "^1.8.5",
     "storybook": "^6.0.22",
-    "three": "^0.115.0",
+    "three": "^0.125.0",
     "typeface-roboto": "0.0.75",
     "vanta": "^0.5.19"
   },
