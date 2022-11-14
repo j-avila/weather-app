@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
-import CityInfo from '../CityInfo'
-import Weather from '../Weather'
-import Grid from '@material-ui/core/Grid'
-import { MdPermScanWifi } from 'react-icons/md'
-import { List, ListItem, Typography } from '@material-ui/core'
-import Axios from 'axios'
-import convertUnits from 'convert-units'
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import CityInfo from '../CityInfo';
+import Weather from '../Weather';
+import Grid from '@material-ui/core/Grid';
+import { MdPermScanWifi } from 'react-icons/md';
+import { List, ListItem, Typography } from '@material-ui/core';
+import setWeather from '../../utils/setWeather';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 const RenderCityAndCoutry = ({ cityCountry, weather, locationHandler }) => {
-  const { city, country } = cityCountry
+  const { city, country, countryCode } = cityCountry;
 
   return (
-    <ListItem button onClick={locationHandler}>
+    <ListItem button onClick={() => locationHandler(city, country, countryCode)}>
       <Grid container justify='center'>
         <Grid item md={10} xs={10}>
           <CityInfo city={city} country={country} />
@@ -25,34 +26,20 @@ const RenderCityAndCoutry = ({ cityCountry, weather, locationHandler }) => {
         </Grid>
       </Grid>
     </ListItem>
-  )
-}
+  );
+};
 
-const CityList = ({ cities, action }) => {
-  const [allWeather, setAllWeather] = useState({})
-  const apiWeather = process.env.REACT_APP_API_WEATHER_URL
-  const apiKey = process.env.REACT_APP_API_KEY
-
-  const setWeather = (city, country, countryCode) => {
-    let url = `${apiWeather}?q=${city},${countryCode}&appid=${apiKey}`
-
-    Axios.get(url)
-      .then((resp) => {
-        const { data } = resp
-        const temperature = Number(
-          convertUnits(data.main.temp).from('K').to('C').toFixed(0)
-        )
-        const state = data.weather[0].main.toLowerCase()
-        const propName = `${city}-${country}`
-        const propValue = { temperature, state }
-        setAllWeather((allWeather) => ({ ...allWeather, [propName]: propValue }))
-      })
-      .catch((err) => console.log(err))
-  }
+const CityList = ({ cities }) => {
+  const [allWeather, setAllWeather] = useState({});
+  const history = useHistory();
+  const onClickHandler = (location) => {
+    const { city, country, countryCode } = location;
+    history.push({ pathname: '/city', state: { city, country, countryCode } });
+  };
 
   useEffect(() => {
-    cities.map((data) => setWeather(data.city, data.country, data.countryCode))
-  }, [cities])
+    cities.map((data) => setWeather({ city: data.city, country: data.country, countrycode: data.countryCode }, setAllWeather));
+  }, [cities]);
 
   return (
     <List>
@@ -61,7 +48,7 @@ const CityList = ({ cities, action }) => {
           <RenderCityAndCoutry
             cityCountry={location}
             weather={allWeather[`${location.city}-${location.country}`]}
-            locationHandler={action}
+            locationHandler={() => onClickHandler(location)}
             key={index}
           />
         ))
@@ -72,8 +59,8 @@ const CityList = ({ cities, action }) => {
         </Grid>
       )}
     </List>
-  )
-}
+  );
+};
 
 CityList.propTypes = {
   cities: PropTypes.arrayOf(
@@ -84,5 +71,5 @@ CityList.propTypes = {
     })
   ).isRequired,
   action: PropTypes.func.isRequired,
-}
-export default CityList
+};
+export default CityList;

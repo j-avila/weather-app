@@ -1,19 +1,18 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Grid } from '@material-ui/core'
-import ForecastItem from '../ForecastItem'
-import { validValues } from '../Icons/Icons'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Grid } from '@material-ui/core';
+import ForecastItem from '../ForecastItem';
+import { validValues } from '../Icons/Icons';
 
 const RenderForecastItem = ({ forecast }) => {
-  const { weekDay, hour, state, temp } = forecast
-  console.log(forecast)
+  const { weekDay, hour, state, temp } = forecast;
 
   return (
     <Grid item data-testid='forecast-item'>
       <ForecastItem weekDay={weekDay} hour={hour} state={state} temp={temp} />
     </Grid>
-  )
-}
+  );
+};
 
 const Forecast = ({ forecastItemList }) => {
   return (
@@ -26,16 +25,11 @@ const Forecast = ({ forecastItemList }) => {
         <h1>nada que ver</h1>
       )}
     </Grid>
-  )
-}
+  );
+};
 
 Forecast.propTypes = {
-  forecastItemList: PropTypes.shape({
-    weekDay: PropTypes.string,
-    hour: PropTypes.number,
-    state: PropTypes.objectOf(validValues),
-    temp: PropTypes.number,
-  }),
-}
+  forecastItemList: PropTypes.array,
+};
 
-export default Forecast
+export default Forecast;

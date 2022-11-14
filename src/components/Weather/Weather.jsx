@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Grid, Typography } from '@material-ui/core'
-import Icons from '../Icons'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Grid, Typography } from '@material-ui/core';
+import Icons from '../Icons';
 
 const Weather = ({ temp, state }) => {
   return (
@@ -18,11 +18,11 @@ const Weather = ({ temp, state }) => {
         {temp}
       </Typography>
     </Grid>
-  )
-}
+  );
+};
 
 Weather.propTypes = {
   temp: PropTypes.number.isRequired,
-}
+};
 
-export default Weather
+export default Weather;

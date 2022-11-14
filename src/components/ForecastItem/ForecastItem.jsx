@@ -1,7 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Typography, Grid } from '@material-ui/core'
-import Icons from '../Icons/Icons'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Typography, Grid } from '@material-ui/core';
+import { AiOutlineClockCircle } from 'react-icons/ai';
+import { FaTemperatureLow } from 'react-icons/fa';
+import Icons from '../Icons/Icons';
 
 const ForecastItem = ({ weekDay, hour, state, temp }) => {
   return (
@@ -9,24 +11,30 @@ const ForecastItem = ({ weekDay, hour, state, temp }) => {
       <Grid item>
         <Typography>{weekDay}</Typography>
       </Grid>
-      <Grid item>
+      <Grid container justify='space-between' alignItems='center' >
+        <>
+          <AiOutlineClockCircle /> Hora:
+        </>
         <Typography>{hour}</Typography>
       </Grid>
       <Grid item>
         <Icons weather={state} />
       </Grid>
-      <Grid item>
-        <Typography>{temp}°</Typography>
+      <Grid container alignItems='center'>
+        <>
+          <FaTemperatureLow /> Temp:
+        </>
+        <Typography> {temp}°</Typography>
       </Grid>
     </Grid>
-  )
-}
+  );
+};
 
 ForecastItem.propTypes = {
   weekDay: PropTypes.string.isRequired,
-  hour: PropTypes.string.isRequired,
+  hour: PropTypes.number.isRequired,
   state: PropTypes.string.isRequired,
-  temprature: PropTypes.number.isRequired,
-}
+  temp: PropTypes.number.isRequired,
+};
 
-export default ForecastItem
+export default ForecastItem;

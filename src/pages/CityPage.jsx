@@ -1,13 +1,19 @@
-import { Grid } from '@material-ui/core'
-import React from 'react'
-import AppFrame from '../components/AppFrame'
-import CityInfo from '../components/CityInfo'
-import Forecast from '../components/Forecast'
-import WheatherDetails from '../components/WeatherDetails'
-import ForecastChart from '../components/Charts'
-import Weather from '../components/Weather'
+import { Grid } from '@material-ui/core';
+import React, { useState } from 'react';
+import AppFrame from '../components/AppFrame';
+import CityInfo from '../components/CityInfo';
+import Forecast from '../components/Forecast';
+import WheatherDetails from '../components/WeatherDetails';
+import ForecastChart from '../components/Charts';
+import Weather from '../components/Weather';
+import { useEffect } from 'react';
+import setWeather from '../utils/setWeather';
+import dayjs from 'dayjs';
+import dayOfYear from 'dayjs/plugin/dayOfYear';
+import format from 'dayjs/plugin/advancedFormat';
+import convertUnits from 'convert-units';
 
-const weatherInfo = {
+const weatherInfoDummy = {
   country: 'venezuela',
   city: 'caracas',
   today: {
@@ -89,21 +95,72 @@ const weatherInfo = {
       max: 15,
     },
   ],
-}
+};
+dayjs.extend(format);
+dayjs.extend(dayOfYear);
 
-export const CityPage = () => {
-  const { country, city, today, week, forecastWeek } = weatherInfo
+
+
+export const CityPage = ({ location }) => {
+  const { state } = location;
+  const { country, city, today, week, forecastWeek: dummyFW } = weatherInfoDummy;
+  const [localWeather, setLocalWeather] = useState();
+  const [forecastWeek, setforecastWeek] = useState([]);
+  const toCelcius = (temp) => Number(convertUnits(temp).from('K').to('C').toFixed());
+
+
+  const parseData = (forecastData) => {
+    const daysAhead = [0, 1, 2, 3, 4, 5];
+    const days = daysAhead.map(d => dayjs().add(d, 'd'));
+    const daysAux = days.map(day => {
+      const tempObjArray = forecastData.list.filter(item => {
+        const dayofyear = dayjs.unix(item.dt).dayOfYear();
+        return dayofyear === day.dayOfYear();
+      });
+      const temps = tempObjArray.map(item => item.main.temp);
+
+      return ({
+        dayHour: day.format('ddd'),
+        min: toCelcius(Math.min(...temps)),
+        max: toCelcius(Math.max(...temps))
+      });
+    });
+
+    const interval = [4, 8, 16, 20, 24];
+    const forecastItemsAux = forecastData.list
+      .filter((item, index) => interval.includes(index))
+      .map(item => ({
+        hour: dayjs.unix(item.dt).hour(),
+        weekDay: dayjs.unix(item.dt).format('dddd'),
+        temp: toCelcius(item.main.temp)
+      }));
+
+    const today = forecastData.list[0];
+
+    setforecastWeek({ chartWeek: daysAux, week: forecastItemsAux, today });
+
+  };
+
+  useEffect(() => {
+    setWeather({ city: state.city, country: state.country, countryCode: state.countryCode }, setLocalWeather, 'forecast');
+  }, []);
+
+  useEffect(() => {
+    if (localWeather) {
+      parseData(localWeather);
+    }
+  }, [localWeather]);
 
   return (
     <AppFrame>
-      <Grid container direction='column' justify='center' spacing={60}>
-        <Grid container md={12} justify='center'>
-          <CityInfo country={country} city={city} />
+      <Grid container direction='column' justify='center' spacing={1}>
+        <Grid container columns={{ md: 12 }} justify='center'>
+          <CityInfo country={state.country} city={state.city} />
         </Grid>
         <Grid
           container
           direction='row'
-          xs={12}
+          columns={{ xs: 12 }}
           justify='center'
           spacing={2}
           alignItems='center'
@@ -113,20 +170,20 @@ export const CityPage = () => {
               weekDay={today.weekDay}
               hour={today.hour}
               state={today.state}
-              temp={today.temp}
+              temp={toCelcius(forecastWeek?.today?.main?.temp)}
             />
           </Grid>
           <Grid item md={4}>
-            <WheatherDetails humidity={today.humidity} wind={today.wind} />
+            <WheatherDetails humidity={forecastWeek?.today?.main.humidity} wind={forecastWeek?.today?.wind.speed} />
           </Grid>
         </Grid>
         <Grid item>
-          <ForecastChart data={forecastWeek} />
+          <ForecastChart data={forecastWeek.chartWeek || {}} />
         </Grid>
         <Grid item md={12}>
-          <Forecast forecastItemList={week} />
+          <Forecast forecastItemList={forecastWeek.week || {}} />
         </Grid>
       </Grid>
     </AppFrame>
-  )
-}
+  );
+};

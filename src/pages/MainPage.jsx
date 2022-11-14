@@ -1,8 +1,8 @@
-import React from 'react'
-import CityList from '../components/CityList'
-import { useHistory } from 'react-router-dom'
-import AppFrame from './../components/AppFrame'
-import { Paper } from '@material-ui/core'
+import React from 'react';
+import CityList from '../components/CityList';
+import { useHistory } from 'react-router-dom';
+import AppFrame from './../components/AppFrame';
+import { Paper } from '@material-ui/core';
 
 const list = [
   { city: 'Caracas', country: 'Venezuela', countryCode: 'VE', temp: 10, state: 'sunny' },
@@ -14,19 +14,13 @@ const list = [
     temp: 10,
     state: 'sunny',
   },
-]
+];
 
-export const MainPage = () => {
-  const history = useHistory()
-  const onClickHandler = () => {
-    history.push('/city')
-  }
+export const MainPage = () =>
+  <AppFrame>
+    <Paper elevation={2}>
+      <CityList cities={list} />
+    </Paper>
+  </AppFrame>
 
-  return (
-    <AppFrame>
-      <Paper elevation={2}>
-        <CityList cities={list} action={onClickHandler} />
-      </Paper>
-    </AppFrame>
-  )
-}
+
