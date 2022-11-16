@@ -34,7 +34,7 @@ const CityList = ({ cities }) => {
   const history = useHistory();
   const onClickHandler = (location) => {
     const { city, country, countryCode } = location;
-    history.push({ pathname: '/city', state: { city, country, countryCode } });
+    history.push({ pathname: `${process.env.REACT_APP_BASEURL}/city`, state: { city, country, countryCode } });
   };
 
   useEffect(() => {

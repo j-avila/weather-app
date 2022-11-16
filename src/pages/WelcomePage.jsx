@@ -23,7 +23,7 @@ export const WelcomePage = () => {
             </Grid>
           </Grid>
           <Grid container justifyContent='center'>
-            <Link className='link-button' arial-label='menu' component={Route} to='/main'>
+            <Link className='link-button' arial-label='menu' component={Route} to={`${process.env.REACT_APP_BASEURL}/main`}>
               Entrar
             </Link>
           </Grid>

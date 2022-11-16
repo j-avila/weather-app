@@ -2,7 +2,7 @@
   "name": "wheater-app_2",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://j-avila.github.io/weather-app/",
+  "homepage": "https://j-avila.github.io/weather-app",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",

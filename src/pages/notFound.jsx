@@ -26,7 +26,7 @@ export const NotFound = () => {
             </Grid>
           </Grid>
           <Grid container justifyContent='center'>
-            <Link className='link-button' arial-label='menu' component={Route} to='/'>
+            <Link className='link-button' arial-label='menu' component={Route} to={process.env.REACT_APP_BASEURL}>
               Volver al Inicio
             </Link>
           </Grid>
