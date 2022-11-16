@@ -1,14 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Link as route } from 'react-router-dom'
-import { AppBar, Grid, IconButton, Link, Toolbar, Typography } from '@material-ui/core'
-import { IconContext } from 'react-icons'
-import { WiDaySunny } from 'react-icons/wi'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link as route } from 'react-router-dom';
+import { AppBar, Grid, IconButton, Link, Toolbar, Typography } from '@material-ui/core';
+import { IconContext } from 'react-icons';
+import { WiDaySunny } from 'react-icons/wi';
 
 const AppFrame = ({ children }) => {
   return (
     <div>
-      <Grid container justify='center'>
+      <Grid container justifyContent='center'>
         <AppBar position='static'>
           <Toolbar>
             <IconButton color='inherit' arria-label='menu'>
@@ -26,11 +26,11 @@ const AppFrame = ({ children }) => {
         </Grid>
       </Grid>
     </div>
-  )
-}
+  );
+};
 
 AppFrame.propTypes = {
   children: PropTypes.node,
-}
+};
 
-export default AppFrame
+export default AppFrame;

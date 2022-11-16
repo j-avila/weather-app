@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { WiNa } from 'react-icons/wi';
 import { Grid } from '@material-ui/core';
 import ForecastItem from '../ForecastItem';
-import { validValues } from '../Icons/Icons';
 
 const RenderForecastItem = ({ forecast }) => {
   const { weekDay, hour, state, temp } = forecast;
@@ -16,20 +16,20 @@ const RenderForecastItem = ({ forecast }) => {
 
 const Forecast = ({ forecastItemList }) => {
   return (
-    <Grid container direction='row' justify='space-around' alignItems='center'>
+    <Grid container direction='row' justifyContent='space-around' alignItems='center' style={{ padding: ' .5rem 1rem', gap: '52px', minWidth: 'max-content' }} >
       {forecastItemList && forecastItemList.length >= 1 ? (
         forecastItemList.map((item, index) => (
           <RenderForecastItem key={index} forecast={item} />
         ))
       ) : (
-        <h1>nada que ver</h1>
+        <WiNa />
       )}
     </Grid>
   );
 };
 
 Forecast.propTypes = {
-  forecastItemList: PropTypes.array,
+  forecastItemList: PropTypes.object,
 };
 
 export default Forecast;

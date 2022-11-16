@@ -1,16 +1,16 @@
-import React from 'react'
-import { Grid, Typography, Link } from '@material-ui/core'
-import { Link as Route } from 'react-router-dom'
-import { IconContext } from 'react-icons/lib'
-import { GoSquirrel } from 'react-icons/go'
-import WelcomeScreen from '../components/WelcomeScreen/WelcomeScreen'
+import React from 'react';
+import { Grid, Typography, Link } from '@material-ui/core';
+import { Link as Route } from 'react-router-dom';
+import { IconContext } from 'react-icons/lib';
+import { GoSquirrel } from 'react-icons/go';
+import WelcomeScreen from '../components/WelcomeScreen/WelcomeScreen';
 
 export const NotFound = () => {
   return (
     <WelcomeScreen>
-      <Grid container className='full' direction='column' justify='center'>
+      <Grid container className='full' direction='column' justifyContent='center'>
         <div className='hightlight'>
-          <Grid item container xs={12} spacing={4} justify='center' alignItems='center'>
+          <Grid item container xs={12} spacing={4} justifyContent='center' alignItems='center'>
             <Grid item>
               <IconContext.Provider value={{ size: '6em', color: '#ffffff' }}>
                 <GoSquirrel />
@@ -25,7 +25,7 @@ export const NotFound = () => {
               </Typography>
             </Grid>
           </Grid>
-          <Grid container justify='center'>
+          <Grid container justifyContent='center'>
             <Link className='link-button' arial-label='menu' component={Route} to='/'>
               Volver al Inicio
             </Link>
@@ -33,7 +33,7 @@ export const NotFound = () => {
         </div>
       </Grid>
     </WelcomeScreen>
-  )
-}
+  );
+};
 
-export default NotFound
+export default NotFound;

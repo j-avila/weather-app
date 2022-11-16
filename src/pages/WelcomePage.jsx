@@ -1,16 +1,16 @@
-import React from 'react'
-import { Grid, Typography, Link } from '@material-ui/core'
-import { Link as Route } from 'react-router-dom'
-import { IconContext } from 'react-icons/lib'
-import { WiDayRainWind } from 'react-icons/wi'
-import WelcomeScreen from '../components/WelcomeScreen/WelcomeScreen'
+import React from 'react';
+import { Grid, Typography, Link } from '@material-ui/core';
+import { Link as Route } from 'react-router-dom';
+import { IconContext } from 'react-icons/lib';
+import { WiDayRainWind } from 'react-icons/wi';
+import WelcomeScreen from '../components/WelcomeScreen/WelcomeScreen';
 
 export const WelcomePage = () => {
   return (
     <WelcomeScreen>
-      <Grid container className='full' direction='column' justify='center'>
+      <Grid container className='full' direction='column' justifyContent='center'>
         <div className='hightlight'>
-          <Grid item container xs={12} justify='center' alignItems='center'>
+          <Grid item container xs={12} justifyContent='center' alignItems='center'>
             <Grid item>
               <IconContext.Provider value={{ size: '6em', color: '#ffffff' }}>
                 <WiDayRainWind />
@@ -22,7 +22,7 @@ export const WelcomePage = () => {
               </Typography>
             </Grid>
           </Grid>
-          <Grid container justify='center'>
+          <Grid container justifyContent='center'>
             <Link className='link-button' arial-label='menu' component={Route} to='/main'>
               Entrar
             </Link>
@@ -30,7 +30,7 @@ export const WelcomePage = () => {
         </div>
       </Grid>
     </WelcomeScreen>
-  )
-}
+  );
+};
 
-export default WelcomePage
+export default WelcomePage;

@@ -13,7 +13,7 @@ const RenderCityAndCoutry = ({ cityCountry, weather, locationHandler }) => {
 
   return (
     <ListItem button onClick={() => locationHandler(city, country, countryCode)}>
-      <Grid container justify='center'>
+      <Grid container justifyContent='center'>
         <Grid item md={10} xs={10}>
           <CityInfo city={city} country={country} />
         </Grid>

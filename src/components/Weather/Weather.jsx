@@ -9,7 +9,7 @@ const Weather = ({ temp, state }) => {
       container
       item
       direction='row'
-      justify='space-around'
+      justifyContent='space-around'
       alignItems='center'
       spacing={1}
     >

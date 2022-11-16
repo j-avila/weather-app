@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {
   WiCloud,
@@ -8,7 +8,8 @@ import {
   WiSnow,
   WiDayRainMix,
   WiThunderstorm,
-  WiDayHaze
+  WiDayHaze,
+  WiNa
 } from 'react-icons/wi';
 import { IconContext } from 'react-icons';
 
@@ -25,9 +26,10 @@ const stateByName = {
   snow: WiSnow,
   thunderstorm: WiThunderstorm,
   default: WiHorizonAlt,
+  notAviable: WiNa
 };
 const RenderState = (state) => {
-  const Icon = stateByName[state];
+  const Icon = stateByName[state] || stateByName['notAviable'];
   return <Icon />;
 };
 
@@ -43,14 +45,15 @@ export const validValues = [
   'drizzle',
   'thunderstrom',
   'default',
+  'notAviable'
 ];
 
-const Icons = ({ weather = 'default' }) => {
+const Icons = ({ weather }) => {
 
   return (
     <i className={`ico-${weather}`} data-testid={`ico-${weather}`}>
       <IconContext.Provider value={{ size: '5em', display: 'inline' }}>
-        {RenderState(weather)}
+        {RenderState(weather?.toLowerCase())}
       </IconContext.Provider>
     </i>
   );

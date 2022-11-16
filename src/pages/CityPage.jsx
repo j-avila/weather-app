@@ -103,7 +103,7 @@ dayjs.extend(dayOfYear);
 
 export const CityPage = ({ location }) => {
   const { state } = location;
-  const { country, city, today, week, forecastWeek: dummyFW } = weatherInfoDummy;
+  const { today } = weatherInfoDummy;
   const [localWeather, setLocalWeather] = useState();
   const [forecastWeek, setforecastWeek] = useState([]);
   const toCelcius = (temp) => Number(convertUnits(temp).from('K').to('C').toFixed());
@@ -132,7 +132,8 @@ export const CityPage = ({ location }) => {
       .map(item => ({
         hour: dayjs.unix(item.dt).hour(),
         weekDay: dayjs.unix(item.dt).format('dddd'),
-        temp: toCelcius(item.main.temp)
+        temp: toCelcius(item.main.temp),
+        state: item.weather[0].main
       }));
 
     const today = forecastData.list[0];
@@ -153,15 +154,15 @@ export const CityPage = ({ location }) => {
 
   return (
     <AppFrame>
-      <Grid container direction='column' justify='center' spacing={1}>
-        <Grid container columns={{ md: 12 }} justify='center'>
+      <Grid container direction='column' justifyContent='center' spacing={1}>
+        <Grid container columns={{ md: 12 }} justifyContent='center'>
           <CityInfo country={state.country} city={state.city} />
         </Grid>
         <Grid
           container
           direction='row'
           columns={{ xs: 12 }}
-          justify='center'
+          justifyContent='center'
           spacing={2}
           alignItems='center'
         >
@@ -169,7 +170,7 @@ export const CityPage = ({ location }) => {
             <Weather
               weekDay={today.weekDay}
               hour={today.hour}
-              state={today.state}
+              state={forecastWeek?.today?.weather[0]?.main.toLowerCase()}
               temp={toCelcius(forecastWeek?.today?.main?.temp)}
             />
           </Grid>
@@ -180,7 +181,7 @@ export const CityPage = ({ location }) => {
         <Grid item>
           <ForecastChart data={forecastWeek.chartWeek || {}} />
         </Grid>
-        <Grid item md={12}>
+        <Grid item md={12} style={{ overflow: 'overlay', width: '100vw' }}>
           <Forecast forecastItemList={forecastWeek.week || {}} />
         </Grid>
       </Grid>

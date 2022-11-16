@@ -7,11 +7,11 @@ import Icons from '../Icons/Icons';
 
 const ForecastItem = ({ weekDay, hour, state, temp }) => {
   return (
-    <Grid container direction='column' justify='center' alignItems='center'>
+    <Grid container direction='column' justifyContent='center' alignItems='center'>
       <Grid item>
         <Typography>{weekDay}</Typography>
       </Grid>
-      <Grid container justify='space-between' alignItems='center' >
+      <Grid container justifyContent='space-between' alignItems='center' >
         <>
           <AiOutlineClockCircle /> Hora:
         </>
